@@ -173,6 +173,9 @@ QVariant MessagingModel::data(const QModelIndex &index, int role) const
             return DOCUMENT;
         if (messages[rowIndex]->content_->get_id() == messageAnimation::ID)
             return ANIMATION;
+        if (messages[rowIndex])->content_>get_id() = messageChatJoinByLink::ID)
+            return INVITE;
+            
         return UNDEFINED;
         break;
     }
@@ -477,6 +480,10 @@ QVariant MessagingModel::dataContent(const int rowIndex) const
                                       (messages[rowIndex]->content_.data());
             return QString::fromStdString(contentDocumentPtr->document_->document_->local_->path_);
 
+        }
+        if (messages[rowIndex]->content_->get_id() == messageChatJoinByLink::ID)
+        {
+            //FIXME 
         }
         if (messages[rowIndex]->content_->get_id() == messageUnsupported::ID)
             return "Unsupported message type";

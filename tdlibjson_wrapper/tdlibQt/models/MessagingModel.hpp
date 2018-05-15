@@ -186,6 +186,7 @@ public:
         DOCUMENT,
         ANIMATION,
         SYSTEM_NEW_MESSAGE,
+        INVITE,
         UNDEFINED
     };
     enum MessageState {

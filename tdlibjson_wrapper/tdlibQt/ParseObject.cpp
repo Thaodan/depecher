@@ -524,7 +524,10 @@ QSharedPointer<MessageContent> ParseObject::parseMessageContent(const QJsonObjec
         typeMessageText->text_->text_ = "Video";
         return typeMessageText;
     }
-
+    if (messageContentObject["@type"].toString() == "messageChatJoinByLink") {
+        typeMessageText->text_->text_ = "Invite";
+        return typeMessageText;
+    }
     /* messageAnimation
      * messageAudio
      * messageBasicGroupChatCreate,
@@ -705,6 +708,17 @@ QSharedPointer<formattedText> ParseObject::parseFormattedTextContent(const QJson
     resultFormattedText->text_ = formattedTextObject["text"].toString().toStdString();
 #warning "TODO Entities, Webpage"
     return resultFormattedText;
+}
+
+QSharedPointer<messageChatJoinByLink> ParseObject::ParseChatJoinParseLink(const QJsonArray &linkobject)
+{
+    if (messageChatJoinByLinkObject["@type"].toString() != "messageChatJoinByLink" )
+        return QSharedPointer<messageChatJoinByLink>(new messageChatJoinByLink);
+
+    auto resultMessageChatJoinByLink = QSharedPointer<messageChatJoinByLink>(new messageChatJoinByLink);
+    resultMessageChatJoinByLink->text_=linkobject["text"].toString();
+
+    return resultMessageChatJoinByLink;
 }
 
 QSharedPointer<chatPhoto> ParseObject::parseChatPhoto(const QJsonObject &chatPhotoObject)

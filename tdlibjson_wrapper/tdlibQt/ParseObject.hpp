@@ -52,6 +52,8 @@ public:
 
     static QSharedPointer<formattedText> parseFormattedTextContent(const QJsonObject
                                                                    &formattedTextObject);
+    static QSharedPointer<messageChatJoinByLink> parseChatJoinParseLink(const QJsonObject
+                                                                &formattedText);
     static QSharedPointer<chatPhoto> parseChatPhoto(const QJsonObject &chatPhotoObject);
     static QSharedPointer<file> parseFile(const QJsonObject &fileObject);
     static QSharedPointer<updateUserChatAction> parseChatAction(const QJsonObject &chatActionObject);
